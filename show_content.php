@@ -1,7 +1,7 @@
 <?php
 	require 'config.php';
 
-	$query = mysql_query("SELECT title,content,user,date FROM question ORDER BY date DESC LIMIT 0,5") or die ('SQL错误！');
+	$query = mysql_query("SELECT (SELECT COUNT(*) FROM comment WHERE titleid = a.id) AS count,a.id,a.title,a.content,a.user,a.date FROM question a ORDER BY a.date DESC LIMIT 0,10") or die ('SQL错误！');
 
 	$json = '';
 
